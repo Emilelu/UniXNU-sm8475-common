@@ -24,14 +24,37 @@
 		#size-cells = <0>;
 		timebase-frequency = <19200000>;
 
-		cpu@0 { device_type = "cpu"; compatible = "qcom,kryo"; reg = <0x000>; };
-		cpu@100 { device_type = "cpu"; compatible = "qcom,kryo"; reg = <0x100>; };
-		cpu@200 { device_type = "cpu"; compatible = "qcom,kryo"; reg = <0x200>; };
-		cpu@300 { device_type = "cpu"; compatible = "qcom,kryo"; reg = <0x300>; };
-		cpu@400 { device_type = "cpu"; compatible = "qcom,kryo"; reg = <0x400>; };
-		cpu@500 { device_type = "cpu"; compatible = "qcom,kryo"; reg = <0x500>; };
-		cpu@600 { device_type = "cpu"; compatible = "qcom,kryo"; reg = <0x600>; };
-		cpu@700 { device_type = "cpu"; compatible = "qcom,kryo"; reg = <0x700>; };
+		/* cpu@0: prime */
+		cpu@0 { device_type = "cpu"; compatible = "qcom,kryo";
+			reg = <0x000>; unixnu,cluster-type = "P"; };
+
+		/* cpu@1: performance */
+		cpu@1 { device_type = "cpu"; compatible = "qcom,kryo";
+			reg = <0x100>; unixnu,cluster-type = "P"; };
+
+		/* cpu@2: performance */
+		cpu@2 { device_type = "cpu"; compatible = "qcom,kryo";
+			reg = <0x200>; unixnu,cluster-type = "P"; };
+
+		/* cpu@3: performance */
+		cpu@3 { device_type = "cpu"; compatible = "qcom,kryo";
+			reg = <0x300>; unixnu,cluster-type = "P"; };
+
+		/* cpu@4: performance */
+		cpu@4 { device_type = "cpu"; compatible = "qcom,kryo";
+			reg = <0x400>; unixnu,cluster-type = "P"; };
+
+		/* cpu@5: performance */
+		cpu@5 { device_type = "cpu"; compatible = "qcom,kryo";
+			reg = <0x500>; unixnu,cluster-type = "P"; };
+
+		/* cpu@6: performance */
+		cpu@6 { device_type = "cpu"; compatible = "qcom,kryo";
+			reg = <0x600>; unixnu,cluster-type = "P"; };
+
+		/* cpu@7: performance */
+		cpu@7 { device_type = "cpu"; compatible = "qcom,kryo";
+			reg = <0x700>; unixnu,cluster-type = "P"; };
 	};
 
 	psci {
