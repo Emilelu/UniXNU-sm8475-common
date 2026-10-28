@@ -1,0 +1,3 @@
+# XNU patches that belong to the SM8475 SoC layer.
+# Empty for now: the SM8475 boards take their platform behaviour from the device
+# series. A patch that a second SM8475 board needs belongs here.

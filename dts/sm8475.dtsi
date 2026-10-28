@@ -1,0 +1,56 @@
+/dts-v1/;
+
+/*
+ * Qualcomm SM8475 (Snapdragon 8+ Gen 1) platform description.
+ *
+ * Only what the XNU platform expert and the exported ADT nodes read: the CPU
+ * topology with the arch timer frequency, the PSCI conduit, and the GICv3
+ * distributor/redistributor window. Board files add memory, peripherals and
+ * the Apple identity.
+ *
+ * The CPU nodes use the flat eight-core MPIDR model (0x000..0x700) that the
+ * SM8475 board already running this kernel publishes; XNU assigns its logical
+ * IDs by device-tree order and starts them through PSCI.
+ */
+
+/ {
+	#address-cells = <2>;
+	#size-cells = <2>;
+	compatible = "qcom,sm8475";
+	model = "Qualcomm SM8475";
+
+	cpus {
+		#address-cells = <1>;
+		#size-cells = <0>;
+		timebase-frequency = <19200000>;
+
+		cpu0 { device_type = "cpu"; compatible = "qcom,kryo"; reg = <0x000>; };
+		cpu1 { device_type = "cpu"; compatible = "qcom,kryo"; reg = <0x100>; };
+		cpu2 { device_type = "cpu"; compatible = "qcom,kryo"; reg = <0x200>; };
+		cpu3 { device_type = "cpu"; compatible = "qcom,kryo"; reg = <0x300>; };
+		cpu4 { device_type = "cpu"; compatible = "qcom,kryo"; reg = <0x400>; };
+		cpu5 { device_type = "cpu"; compatible = "qcom,kryo"; reg = <0x500>; };
+		cpu6 { device_type = "cpu"; compatible = "qcom,kryo"; reg = <0x600>; };
+		cpu7 { device_type = "cpu"; compatible = "qcom,kryo"; reg = <0x700>; };
+	};
+
+	psci {
+		compatible = "arm,psci-1.0";
+		method = "smc";
+	};
+
+	/*
+	 * APSS window 0x17000000..0x18000000. The exported node becomes
+	 * /arm-io/intc with the registers relative to that window, which is what
+	 * ArmCpu reads as the SoC base.
+	 */
+	intc: interrupt-controller@17100000 {
+		unixnu,adt-name = "intc";
+		compatible = "arm,gic-v3";
+		reg = <0x0 0x17100000 0x0 0x10000>,
+		      <0x0 0x17180000 0x0 0x200000>;
+		redistributor-stride = <0x40000>;
+		interrupt-controller;
+		#interrupt-cells = <3>;
+	};
+};

@@ -1,0 +1,12 @@
+schema_version = 2
+
+[soc]
+name = "sm8475"
+description = "Qualcomm SM8475 (Snapdragon 8+ Gen 1)"
+# The register, interrupt and CPU facts below come from the SM8475 platform description in
+# mainline Linux and from the SM8475 board that already runs this kernel (Nothing Phone (2)).
+source_repository = "https://github.com/torvalds/linux"
+source_revision = "v6.6"
+
+[components]
+include = ["ArmCpu", "ArmDTPlatform"]
