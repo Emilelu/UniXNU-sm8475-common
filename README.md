@@ -1,5 +1,12 @@
 # UniXNU SM8475 common
 
+## 接手 / Handoff
+
+- [`HANDOFF.md`](HANDOFF.md) —— 本仓库职责与交接入口
+- [移植总方案](https://github.com/Emilelu/UniXNU-mondrian/blob/main/docs/engineering/PORTING-PLAN.md)
+- [工作流](https://github.com/Emilelu/UniXNU-mondrian/blob/main/docs/engineering/WORKFLOW.md)
+
+
 Shared Qualcomm SM8475 (Snapdragon 8+ Gen 1) support for UniXNU device
 repositories: the CPU topology, the GICv3 window and the platform switches that
 every board on this SoC needs.
