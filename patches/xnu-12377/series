@@ -1,0 +1,14 @@
+# XNU patches for xnu-12377.121.6, one per line in application order.
+#
+# Both come from the SM8450 layer, where they are the two patches every board
+# on the waipio/cape family needed. They are copied rather than referenced so
+# the SM8475 layer can review them against its own MPIDR numbering and PMGR.
+#
+# sheng-platform-power inserts the PMGR hook that the OS series'
+# zzz-boot-progress.patch uses as context. XNU_SHENG_PMGR is unset on
+# mondrian, so the hook compiles out; the hunk is still required.
+sheng-platform-power.patch
+# CPU numbering: SM8450 numbers the core in Affinity1; SM8475's MPIDRs are
+# flat 0x000..0x700 and fit the same 16-bit mask. start.s must mask 16 bits
+# when it runs the BCM2837 (4 KiB) machine config.
+native-smp-secondary.patch
